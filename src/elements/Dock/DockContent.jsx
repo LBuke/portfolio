@@ -2,6 +2,7 @@ import React from "react";
 import "@styles/dock.scss";
 import FinderIcon from "@static/finder.png";
 import CodeIcon from "@static/code.png";
+import Minecraft from "@static/minecraft.png";
 import GithubIcon from "@static/github.png";
 import twitterIcon from "@static/twitterIcon.png";
 import FolderIcon from "@static/folder.png";
@@ -39,15 +40,24 @@ const DockContent = () => {
 									/>
 								</li>
 							</Link>
-							<Link to="/git">
-								<li data-title="Git Log">
+							<Link to="/mc">
+								<li data-title="Minecraft">
+									<img
+										src={Minecraft}
+										className="img-fluid"
+										alt="mac"
+									/>
+								</li>
+							</Link>
+							<a href="https://github.com/lbuke">
+								<li data-title="GitHub - LBuke">
 									<img
 										src={GithubIcon}
 										className="img-fluid"
 										alt="mac"
 									/>
 								</li>
-							</Link>
+							</a>
 							<a href="https://twitter.com/Ted25519">
 								<li data-title="Twitter">
 									<img
@@ -57,25 +67,25 @@ const DockContent = () => {
 									/>
 								</li>
 							</a>
-							<a href="https://www.linkedin.com/in/Lbuke">
-								<li data-title="LinkedIn">
-									<img
-										src={LinkedInIcon}
-										className="img-fluid"
-										alt="dope"
-									/>
-								</li>
-							</a>
-							<a href="https://thisdoesnothing.vercel.app/" target="_blank">
-								<li data-title="This Does Nothing">
-									<img
-										src
-										={NothingIcon}
-										className="img-fluid"
-										alt="mac"
-									/>
-								</li>
-							</a>
+							{/*<a href="https://www.linkedin.com/in/Lbuke">*/}
+							{/*	<li data-title="LinkedIn">*/}
+							{/*		<img*/}
+							{/*			src={LinkedInIcon}*/}
+							{/*			className="img-fluid"*/}
+							{/*			alt="dope"*/}
+							{/*		/>*/}
+							{/*	</li>*/}
+							{/*</a>*/}
+							{/*<a href="https://thisdoesnothing.vercel.app/" target="_blank">*/}
+							{/*	<li data-title="This Does Nothing">*/}
+							{/*		<img*/}
+							{/*			src*/}
+							{/*			={NothingIcon}*/}
+							{/*			className="img-fluid"*/}
+							{/*			alt="mac"*/}
+							{/*		/>*/}
+							{/*	</li>*/}
+							{/*</a>*/}
 							<div className="separator" />
 							<Link to="/resume">
 								<li data-title="Resume">

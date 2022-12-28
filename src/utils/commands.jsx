@@ -74,13 +74,6 @@ let commandList = [
 		description: "learn more about me",
 	},
 	{
-		name: ["code"],
-		action: true,
-		response: "",
-		subPathStrict: [true, { name: ".", response: "" }],
-		description: "opens a VS code window for this website's source code",
-	},
-	{
 		name: ["git"],
 		action: true,
 		response: "",
@@ -98,13 +91,6 @@ let commandList = [
 		name: ["github"],
 		action: true,
 		response: 'Visit: <a href="https://github.com/Lbuke">Lbuke</a>',
-		subPathStrict: [false],
-		description: "checkout my github profile",
-	  },
-	  {
-		name: ["linkedin"],
-		action: true,
-		response: 'Visit: <a href="https://www.linkedin.com/in/Lbuke">LinkedIn</a>',
 		subPathStrict: [false],
 		description: "checkout my github profile",
 	  },
