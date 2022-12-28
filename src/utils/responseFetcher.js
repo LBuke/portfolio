@@ -71,14 +71,16 @@ const Action = props => {
 				case "CODE":
 					document.location.href = "/vscode";
 					break;
-				case "DANGER":
-					document.location.href = "/danger-zone";
-					break;
 				case "QEMU":
 					document.location.href = "/qemu";
 					break;
 				case "RESUME":
 					document.location.href = "/resume";
+					console.log("whoami 1 triggered")
+					break;
+				case "WHOAMI":
+					document.location.href = "/resume";
+					console.log("whoami 2 triggered")
 					break;
 				case "PROJECTS":
 					document.location.href = "/projects";

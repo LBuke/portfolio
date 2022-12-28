@@ -48,7 +48,7 @@ const DockContent = () => {
 									/>
 								</li>
 							</Link>
-							<a href="https://twitter.com/aLbuketwt">
+							<a href="https://twitter.com/Ted25519">
 								<li data-title="Twitter">
 									<img
 										src={twitterIcon}
@@ -57,7 +57,7 @@ const DockContent = () => {
 									/>
 								</li>
 							</a>
-							<a href="https://www.linkedin.com/in/Lbuke-sharma-47b787201">
+							<a href="https://www.linkedin.com/in/Lbuke">
 								<li data-title="LinkedIn">
 									<img
 										src={LinkedInIcon}

@@ -126,8 +126,7 @@ const InputLine = props => {
 				let timeSpentMin = Math.floor(timeSpentSec / 60);
 				if (timeSpentMin === 5 && !disabled) {
 					setVal("help");
-					inputRef.current.style.width =
-						inputRef.current.value.length + "ch";
+					inputRef.current.style.width = inputRef.current.value.length + "ch";
 				}
 			}, 1000);
 			return () => {
@@ -220,11 +219,8 @@ const InputLine = props => {
 								setCounter(counter - 1);
 								let currentCommand = commands[counter - 1];
 								setVal(currentCommand);
-								e.target.style.width =
-									currentCommand.length + "ch";
-								cursorRef.current.style.transform = `translateX(${
-									-currentCommand.length - 0.5
-								}ch)`;
+								e.target.style.width = currentCommand.length + "ch";
+								cursorRef.current.style.transform = `translateX(${-currentCommand.length - 0.5}ch)`;
 							}
 							break;
 						case "ArrowDown":
@@ -237,11 +233,8 @@ const InputLine = props => {
 									setCounter(counter + 1);
 									let currentCommand = commands[counter + 1];
 									setVal(currentCommand);
-									e.target.style.width =
-										currentCommand.length + "ch";
-									cursorRef.current.style.transform = `translateX(${
-										-currentCommand.length - 0.5
-									}ch)`;
+									e.target.style.width = currentCommand.length + "ch";
+									cursorRef.current.style.transform = `translateX(${-currentCommand.length - 0.5}ch)`;
 								}
 							}
 							break;

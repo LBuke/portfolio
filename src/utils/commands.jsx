@@ -30,15 +30,11 @@ const getSpaces = commandList => {
 	return what;
 };
 
-const compileCommandHTML = commandList => {
+const compileCommandHTML = (commandList) => {
 	let defArgs = [
 		{
 			name: "ls",
 			description: "lists directory content",
-		},
-		{
-			name: "cd",
-			description: "changes the current working directory",
 		},
 		{
 			name: "clear",
@@ -59,38 +55,23 @@ const compileCommandHTML = commandList => {
 		}),
 	];
 	let spaceList = getSpaces(argList);
-	let response = `These shell commands are defined internally.
-Type <span class="style2">'help'</span> to see this list.\n\n`;
+	let response = `These shell commands are defined internally.\n<span class="style2">Below is a list of supported commands!</span>\n\n`;
 	argList.forEach((item, idx) => {
 		let temp = `<span class="style2">${item.name}</span>${spaceList[idx]}${item.description}\n`;
 		response += temp;
 	});
-	return `${response}\nAnd more "hidden" commands...`;
+	return (
+		`${response}\nAnd more "hidden" commands...`
+	)
 };
 
 let commandList = [
 	{
-		name: ["resume", "./resume", "resume.sh", "./resume.sh"],
-		action: { RESUME: "" },
+		name: ["whoami", "./whoami", "whoami.sh", "./whoami.sh"],
+		action: { WHOAMI: "" },
 		response: "",
-		subPathStrict: [false],
-		description: "view my resume",
-	},
-	{
-		name: ["projects", "./projects", "projects.app", "./projects.app"],
-		// action: { PROJECTS: "" },
-		action: false,
-		response: "Under construction 🚧🔨",
-		subPathStrict: [false],
-		description: "checkout my projects",
-	},
-	{
-		name: ["neofetch"],
-		action: false,
-		response: `<pre>${neofetch}</pre>`,
-		subPathStrict: [false],
-		description:
-			"displays information about me in an aesthetic and visually pleasing way.",
+		subPathStrict: [true, { name: ".", response: "" }],
+		description: "learn more about me",
 	},
 	{
 		name: ["code"],
@@ -98,13 +79,6 @@ let commandList = [
 		response: "",
 		subPathStrict: [true, { name: ".", response: "" }],
 		description: "opens a VS code window for this website's source code",
-	},
-	{
-		name: ["danger"],
-		action: true,
-		response: "",
-		subPathStrict: [false],
-		description: '<span class="style7">¯\\_(ツ)_/¯</span>',
 	},
 	{
 		name: ["git"],
@@ -116,21 +90,21 @@ let commandList = [
 	{
 		name: ["twitter"],
 		action: true,
-		response: 'Visit: <a href="https://twitter.com/aLbuketwt">aLbuketwt</a>',
+		response: 'Visit: <a href="https://twitter.com/Ted25519">Ted25519</a>',
 		subPathStrict: [false],
 		description: "checkout my Twitter profile",
 	  },
 	  {
 		name: ["github"],
 		action: true,
-		response: 'Visit: <a href="https://github.com/Lbukessharma-ss">Lbuke</a>',
+		response: 'Visit: <a href="https://github.com/Lbuke">Lbuke</a>',
 		subPathStrict: [false],
 		description: "checkout my github profile",
 	  },
 	  {
 		name: ["linkedin"],
 		action: true,
-		response: 'Visit: <a href="https://www.linkedin.com/in/Lbuke-sharma-47b787201/">LinkedIn</a>',
+		response: 'Visit: <a href="https://www.linkedin.com/in/Lbuke">LinkedIn</a>',
 		subPathStrict: [false],
 		description: "checkout my github profile",
 	  },
@@ -144,8 +118,8 @@ let commandList = [
 ];
 
 commandList = commandList.map(item => {
-	if (item.name[0] === "help") {
-		item.response = `<pre>${compileCommandHTML(commandList)}</pre>`;
+	if (item.name[0].trim().toLowerCase() === "help") {
+		item.response = `<pre>${compileCommandHTML(commandList, true)}</pre>`;
 	}
 	return item;
 });
@@ -153,18 +127,18 @@ commandList = commandList.map(item => {
 const fileList = [
 	{
 		name: ".github",
-		link: "https://github.com/Lbukessharma-ss",
+		link: "https://github.com/Lbuke",
 		folder: true,
 		executable: false,
 	},
 	{
 		name: "src",
-		link: "https://github.com/boidushya/Lbuke",
+		link: "https://github.com/Lbuke/portfolio",
 		folder: true,
 		executable: false,
 	},
 	{
-		name: "resume.sh",
+		name: "whoami.sh",
 		link: "",
 		folder: false,
 		executable: true,
@@ -214,34 +188,6 @@ const getCommandList = commandList => {
 	return finalCommandList;
 };
 
-const getArgListCd = fileList => {
-	let defArgs = {
-		_dir: {
-			action: null,
-			response: "",
-		},
-		default: {
-			action: null,
-			response: "cd: cannot access %arg%: Permission Denied",
-		},
-		"~": {
-			action: null,
-			response: "",
-		},
-	};
-	let argList = {};
-	fileList.forEach(item => {
-		argList[item.name] = {
-			action: item.folder ? { PATH: item.link } : null,
-			response: item.folder ? "" : "zsh: cd: %arg%: Not a directory",
-		};
-	});
-	Object.keys(defArgs).forEach(item => {
-		argList[item] = defArgs[item];
-	});
-	return argList;
-};
-
 const commands = {
 	ls: {
 		validArgs: {
@@ -259,9 +205,6 @@ const commands = {
 				response: "ls: cannot access %arg%: Permission Denied",
 			},
 		},
-	},
-	cd: {
-		validArgs: getArgListCd(fileList),
 	},
 	...getCommandList(commandList),
 };
